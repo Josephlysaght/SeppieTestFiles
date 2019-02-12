@@ -1,0 +1,33 @@
+classdef dataConvert < handle
+    properties
+        figD;
+        buttonA;
+    end
+    
+    methods
+      function obj = dataConvert()
+            import uiextras.jTree.*
+            obj.figD = figure('Name','Data Convert',...
+                'MenuBar','none',...
+                'Position',[400 400 300 100],...
+                'Resize','off');
+           obj.buttonA = uicontrol('Style','pushbutton',...
+               'Position',[50 50 80 25],...
+               'String','Browse file',...
+               'Callback',@obj.browse);
+      end   
+      function browse(obj,varargin)
+            [stmfile, stmpath] = uigetfile('*.txt', 'Select data file'); %select file to import
+            delimiterIn = ' '; %specify delimiter
+            headerlinesIn =6; %Specify headerlines 
+            filename = fullfile(stmpath, stmfile); %creating new file data
+            DataIn = importdata(,delimiterIn,headerlinesIn); %Import the data
+   
+            [filename, pathname] = uiputfile('*.mat','Save Workspace Variables As'); %select save name
+            newfilename = fullfile(pathname, filename);
+            save(newfilename, 'DataIn');
+           
+            close all;
+      end
+    end
+end
