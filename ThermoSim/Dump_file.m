@@ -18,6 +18,7 @@
 p1 = P_In;
 t1 = T_In;
 v1 = v_swept+v_clearance;
+T_Out - t1;
 
 %State 2 calculations
 v2 = v_clearance';
